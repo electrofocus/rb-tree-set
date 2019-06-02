@@ -1,25 +1,32 @@
-//
-// Created by Amir Mullagaliev on 05-May-19.
-//
-
 #pragma once
 
 #include <time.h>
 
-// Здесь нужно подключить соответствующий контейнер:
-#include "Set.h"
+/* Ниже подключается соответствующий контейнер: */
+
+//#include "Set.h"
+//#include "Queue.h"
+//#include "List.h"
+//#include "List2.h"
+//#include "Tree.h"
+//#include "Table.h"
 
 class Test {
 public:
-    // Первый параметр - контейнер, второй - число вызовов соответствующего метода
+    /* У каждого метода первый параметр - контейнер,
+       второй - число вызовов соответствующего метода*/
+
     double insert(Set &x, int n) {
         Set t = x;
         size_t size = sizeof(int);
 
         clock_t start = clock();
+
         for (int i = 0; i < n; i++)
             t.insert(&i, size);
+
         clock_t end = clock();
+
         return (double) (end - start) / CLOCKS_PER_SEC;
     }
 
@@ -57,8 +64,7 @@ public:
             t.insert(&i, size);
 
         clock_t start = clock();
-        for (int i = 0; i < n; i++)
-            t.clear();
+        t.clear();
         clock_t end = clock();
         return (double) (end - start) / CLOCKS_PER_SEC;
     }
