@@ -1,15 +1,4 @@
-#pragma once
-
 #include <time.h>
-
-/* Ниже подключается соответствующий контейнер: */
-
-//#include "Set.h"
-//#include "Queue.h"
-//#include "List.h"
-//#include "List2.h"
-//#include "Tree.h"
-//#include "Table.h"
 
 class Test {
 public:

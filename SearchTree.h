@@ -436,7 +436,7 @@ public:
         for (int j = 0; j < i; j++)
             *f << "    ";
         *f << *(int *) x->key;
-        *f << ((x->color) ? "-R" : "-B") << std::endl;
+        *f << ((x->color) ? "-B" : "-R") << std::endl;
         if (x->left != nil)
             print(x->left, i + 1, f);
     }
