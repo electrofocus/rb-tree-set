@@ -277,15 +277,12 @@ private:
     }
 
 public:
-    class Iter : protected Iterator {
+class Iter : protected Container::Iterator {
     private:
         Node *x;
         SearchTree *T;
 
-        Iter(Node *x, SearchTree *T) {
-            Iter::x = x;
-            Iter::T = T;
-        }
+        Iter(Node *x, SearchTree *T);
 
     public:
         void *getElement(size_t &size) override {
@@ -293,19 +290,7 @@ public:
             return x->key;
         }
 
-        bool hasNext() override {
-            if (x->right == nullptr)
-                return false;
-            if (x->right != T->nil)
-                return true;
-            Node *y = x->p;
-            Node *z = x;
-            while (y != T->nil && z == y->right) {
-                z = y;
-                y = y->p;
-            }
-            return y != T->nil;
-        }
+        bool hasNext() override;
 
         void goToNext() override {
             if (x == T->_end->x)
