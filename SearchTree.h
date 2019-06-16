@@ -452,3 +452,5 @@ public:
         f.close();
     }
 };
+
+// TODO 1: Split all methods of class SearchTree into declaration and definition
