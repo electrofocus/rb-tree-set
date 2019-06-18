@@ -33,5 +33,4 @@ public:
     void clear() override;
 
     bool empty() override;
-
 };

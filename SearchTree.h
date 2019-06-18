@@ -276,7 +276,6 @@ private:
         delete z;
     }
 
-public:
 class Iter : protected Container::Iterator {
     private:
         Node *x;
@@ -334,8 +333,7 @@ class Iter : protected Container::Iterator {
 
         friend class SearchTree;
     };
-
-private:
+    
     Iter *_end;
 
 public:
