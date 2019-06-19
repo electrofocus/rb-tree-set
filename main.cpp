@@ -2,23 +2,28 @@
 #include "Mem.h"
 #include "Set.h"
 #include "Test.h"
-#include <list>
 
 using namespace std;
 
 int main() {
     Mem mymem(500);
-    SearchTree mytree(mymem);
+    Set myset(mymem);
+    Test mytest;
 
-    for (int i = 0; i < 100; i++)
-        mytree.insert(&i, sizeof(int));
+//    cout << mytest.insert(myset, 1000000, time) << endl;
+//    cout << time << endl;
 
-    Container::Iterator *i = mytree.begin();
-    i->goToNext();
+//    cout << mytest.remove(myset, 1000000, time) << endl;
+//    cout << time << endl;
 
-    mytree.remove(i);
+//    cout << mytest.remove_even(myset, 1000000, time) << endl;
+//    cout << time << endl;
 
+//    cout << mytest.find(myset, 1000000, time) << endl;
+//    cout << time << endl;
 
+//    cout << mytest.clear(myset, 1000000, time) << endl;
+//    cout << time << endl;
 
     return 0;
 }

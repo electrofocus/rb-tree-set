@@ -428,27 +428,7 @@ public:
         return root == nil;
     }
 
-    void print(Node *x, int i, std::ofstream *f) {
-        if (x->right != nil)
-            print(x->right, i + 1, f);
-        for (int j = 0; j < i; j++)
-            *f << "    ";
-        *f << *(int *) x->key;
-        *f << ((x->color) ? "-B" : "-R") << std::endl;
-        if (x->left != nil)
-            print(x->left, i + 1, f);
-    }
-
-    void print(const string &dst) {
-        if (_size > 10000)
-            return;
-        std::ofstream f(dst);
-        if (root == nil)
-            f << "Empty tree" << std::endl;
-        else
-            print(root, 0, &f);
-        f.close();
-    }
 };
 
 // TODO 1: Split all methods of class SearchTree into declaration and definition
+// TODO 2: Inherit class Tree
