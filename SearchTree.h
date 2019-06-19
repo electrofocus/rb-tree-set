@@ -292,7 +292,7 @@ class Iter : protected Container::Iterator {
         bool hasNext() override;
 
         void goToNext() override {
-            if (x == T->_end->x)
+            if (x == T->_end->x)// TODO 3: Replace condition to (x == T->nil)
                 return;
             if (x->right != T->nil) {
                 x = T->treeMinimum(x->right);
@@ -338,7 +338,7 @@ class Iter : protected Container::Iterator {
 
 public:
     explicit SearchTree(MemoryManager &mem) : GroupContainer(mem) {
-        nil = new Node;// Специальный конструктор для узла nil
+        nil = new Node;// Здесь вызывается специальный конструктор для узла nil
         root = nil;
         _end = new Iter(nil, this);
         _size = 0;
@@ -428,7 +428,11 @@ public:
         return root == nil;
     }
 
+    ~SearchTree() {
+        clear(root);
+    }
+
 };
 
 // TODO 1: Split all methods of class SearchTree into declaration and definition
-// TODO 2: Inherit class Tree
+// TODO 2: Inherit class Tree, maybe
