@@ -5,11 +5,6 @@
 #include "SearchTree.h"
 
 
-SearchTree::Iter::Iter(SearchTree::Node *x, SearchTree *T) {
-    Iter::x = x;
-    Iter::T = T;
-}
-
 bool SearchTree::Iter::hasNext() {
     if (x->right == nullptr)
         return false;
