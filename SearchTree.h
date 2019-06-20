@@ -13,7 +13,6 @@ enum Color {
 class SearchTree : protected GroupContainer {
 private:
     struct Node {
-        int value;
         void *key;
         size_t size;
         Color color;
@@ -29,18 +28,16 @@ private:
             p = nullptr;
             left = T->nil;
             right = T->nil;
-            value = *((int *) key);
         }
 
         Node() {
-            // Конструктор для узла nil
+            // Специальный конструктор для узла nil
             key = nullptr;
             size = 57;
             color = black;
             p = nullptr;
             left = nullptr;
             right = nullptr;
-            value = -75;
         }
     };
 
