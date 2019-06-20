@@ -292,64 +292,22 @@ class Iter : protected Container::Iterator {
 
         bool hasNext() override;
 
-        void goToNext() override {
-            if (x == T->_end->x)// TODO: Заменить условие на (x == T->nil)
-                return;
-            if (x->right != T->nil) {
-                x = T->treeMinimum(x->right);
-            }
-            else {
-                Node *y = x->p;
-                while (y != T->nil && x == y->right) {
-                    x = y;
-                    y = y->p;
-                }
-                x = y;
-            }
-        }
+        void goToNext() override;
 
-        bool equals(Iterator *right) override {
-            if (this == nullptr && right == nullptr)
-                return true;
-            else
-                if (this != nullptr && right != nullptr)
-                    return x == ((Iter *) right)->x;
-                else
-                    return false;
-        }
+        bool equals(Iterator *right) override;
 
-        bool hasPrevious() {
-            return x != T->treeMinimum(T->root);
-        }
+        bool hasPrevious();
 
-        void goToPrevious() {
-            if (x == T->treeMinimum(T->root))
-                return;
-            if (x->left != T->nil) {
-                x = T->treeMaximum(x->left);
-            }
-            else {
-                Node *y = x->p;
-                while (y != T->nil && x == y->left) {
-                    x = y;
-                    y = y->p;
-                }
-                x = y;
-            }
-        }
+        void goToPrevious();
 
         friend class SearchTree;
     };
-
-private:
-    Iter *_end;
 
 public:
     explicit SearchTree(MemoryManager &mem) :
         GroupContainer(mem),
         nil(new Node),
         root(nil),
-        _end(new Iter(nil, this)),
         _size(0)
     {}
 
@@ -361,19 +319,7 @@ public:
         return _memory.maxBytes();
     }
 
-    Container::Iterator *find(void *key, size_t size) override {
-        Node *x = root;// Нужно, чтобы переходить от корня глубже в дерево при поиске
-        while (x != nil) {
-            if (compare(key, size, x->key, x->size) < 0)// key < x->key
-                x = x->left;
-            else
-                if (compare(key, size, x->key, x->size) > 0)
-                    x = x->right;
-                else
-                    return new Iter(x, this);
-        }
-        return nullptr;
-    }
+    Container::Iterator *find(void *key, size_t size) override;
 
     Container::Iterator *newIterator() override {
         return nullptr;
@@ -388,39 +334,10 @@ public:
     Container::Iterator *end() override {
         if (root == nil)
             return nullptr;
-        return _end;
+        return new Iter(nil, this);
     }
 
-    int insert(void *key, size_t size) {
-        Node *y = nil;// Присвоим, чтобы найти родителя для будущего нового узла
-        Node *x = root;// Присвоим, чтобы переходить от корня глубже в дерево при поиске
-
-        while (x != nil) {
-            y = x;// Здесь y становится родителем
-            if (compare(key, size, x->key, x->size) < 0)// key < x->key
-                x = x->left;
-            else
-                if (compare(key, size, x->key, x->size) > 0)
-                    x = x->right;
-                else
-                    return 1;// Такой элемент уже был добавлен
-        }
-
-        Node *z = new Node(key, size, this);
-        z->p = y;
-
-        if (y == nil)
-            root = z;
-        else
-            if (compare(key, size, y->key, y->size) < 0)
-                y->left = z;
-            else
-                y->right = z;
-
-        insertFix(z);
-        _size++;
-        return 0;// Успешно добавлено
-    }
+    int insert(void *key, size_t size);
 
     void remove(Container::Iterator *it) override {
         Node *z = ((Iter *) it)->x;
@@ -442,7 +359,6 @@ public:
     ~SearchTree() {
         clear(root);
         delete nil;
-        delete _end;
     }
 
 };
