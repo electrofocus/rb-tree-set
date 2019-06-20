@@ -6,9 +6,9 @@
 using namespace std;
 
 int main() {
-    Mem mymem(500);
-    Set myset(mymem);
-    Test mytest;
+//    Mem mymem(500);
+//    Set myset(mymem);
+//    Test mytest;
 
 //    cout << mytest.insert(myset, 1000000, time) << endl;
 //    cout << time << endl;
@@ -24,9 +24,6 @@ int main() {
 
 //    cout << mytest.clear(myset, 1000000, time) << endl;
 //    cout << time << endl;
-
-    Set::Iterator *it = myset.begin();
-
 
     return 0;
 }
