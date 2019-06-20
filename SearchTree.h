@@ -289,7 +289,7 @@ class Iter : protected Container::Iterator {
         bool hasNext() override;
 
         void goToNext() override {
-            if (x == T->_end->x)// TODO 3: Replace condition to (x == T->nil)
+            if (x == T->_end->x)// TODO: Replace condition to (x == T->nil)
                 return;
             if (x->right != T->nil) {
                 x = T->treeMinimum(x->right);
@@ -431,5 +431,4 @@ public:
 
 };
 
-// TODO 1: Split all methods of class SearchTree into declaration and definition
-// TODO 2: Inherit class Tree, maybe
+// TODO: Split all methods of class SearchTree into declaration and definition

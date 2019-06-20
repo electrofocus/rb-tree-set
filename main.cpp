@@ -25,5 +25,8 @@ int main() {
 //    cout << mytest.clear(myset, 1000000, time) << endl;
 //    cout << time << endl;
 
+    Set::Iterator *it = myset.begin();
+
+
     return 0;
 }
