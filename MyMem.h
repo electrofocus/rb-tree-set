@@ -5,46 +5,38 @@
 #pragma once
 
 #include <iostream>
-#include "../../iv/MemoryManager.h"
+#include "MemoryManager.h"
 
 class MyMem : protected MemoryManager {
 private:
     char *mem;
-    bool *bit;
-    size_t *sizes;
+    bool *bits;
 
     size_t _size;
     size_t free;
 
 public:
     explicit MyMem(size_t n) : MemoryManager(n) {
-        mem = (char *) malloc(n * sizeof(char));
-        bit = (bool *) malloc(n * sizeof(bool));
-        sizes = (size_t *) malloc(n * sizeof(size_t));
-        for (int i = 0; i < n; i++) {
-            bit[i] = true;
-            sizes[i] = 0;
-        }
+        mem = new char[n];
+        bits = new bool[n];
+
+        for (int i = 0; i < n; i++)
+            bits[i] = false;
+
         _size = n;
         free = n;
     }
 
     size_t maxBytes() override {
-        return -1;
+        return _size;
     }
 
     void *allocMem(size_t n) override {
-        if (free == 0)
+        if (!free)
             return nullptr;
-        int i, j;
-        for (i = 0; i < _size; i++) {
-            if (bit[i]) {
-                j = i;
-                while(j < _size && bit[j]) j++;
-                if (j - i <= n)
-                    return mem + i;
-                i = j;
-            }
+
+        for (int i = 0; i < _size; i++) {
+
         }
 
     }

@@ -257,10 +257,10 @@ private:
 
     int compare(void *key_1, size_t size_1, void *key_2, size_t size_2) {
         if (size_1 < size_2 || memcmp(key_1, key_2, size_1) < 0)
-            return -1;// key_1 < key_2
+            return -1;
         if (size_1 > size_2 || memcmp(key_1, key_2, size_1) > 0)
-            return 1;// key_1 > key_2
-        return 0;// key_1 == key_2
+            return 1;
+        return 0;
     }
 
     void clear(Node *z) {
@@ -274,7 +274,7 @@ private:
     }
 
 public:
-class Iter : protected Container::Iterator {
+    class Iter : protected Container::Iterator {
     private:
         Node *x;
         SearchTree *T;
@@ -305,11 +305,10 @@ class Iter : protected Container::Iterator {
 
 public:
     explicit SearchTree(MemoryManager &mem) :
-        GroupContainer(mem),
-        nil(new Node),
-        root(nil),
-        _size(0)
-    {}
+            GroupContainer(mem),
+            nil(new Node),
+            root(nil),
+            _size(0) {}
 
     int size() override {
         return _size;
@@ -362,5 +361,3 @@ public:
     }
 
 };
-
-// TODO: Split some methods of class SearchTree into declaration and definition

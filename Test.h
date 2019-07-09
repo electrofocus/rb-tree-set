@@ -1,11 +1,10 @@
+#pragma once
+
 #include <time.h>
 #include "Set.h"
 
 class Test {
 public:
-    /* У каждого метода первый параметр - контейнер,
-       второй - число вызовов соответствующего метода*/
-
     bool insert(Set &x, int n, double &time) {
         Set t = x;
         size_t size = sizeof(int);

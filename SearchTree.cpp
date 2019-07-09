@@ -1,6 +1,4 @@
-//
-// Created by Amir on 05-May-19.
-//
+// Created by Amir Mullagaliev on 05-May-19.
 
 #include "SearchTree.h"
 
@@ -65,9 +63,9 @@ void SearchTree::Iter::goToPrevious() {
 }
 
 Container::Iterator *SearchTree::find(void *key, size_t size) {
-    Node *x = root;// Нужно, чтобы переходить от корня глубже в дерево при поиске
+    Node *x = root;
     while (x != nil) {
-        if (compare(key, size, x->key, x->size) < 0)// key < x->key
+        if (compare(key, size, x->key, x->size) < 0)
             x = x->left;
         else
             if (compare(key, size, x->key, x->size) > 0)
@@ -79,18 +77,18 @@ Container::Iterator *SearchTree::find(void *key, size_t size) {
 }
 
 int SearchTree::insert(void *key, size_t size) {
-    Node *y = nil;// Присвоим, чтобы найти родителя для будущего нового узла
-    Node *x = root;// Присвоим, чтобы переходить от корня глубже в дерево при поиске
+    Node *y = nil;
+    Node *x = root;
 
     while (x != nil) {
-        y = x;// Здесь y становится родителем
-        if (compare(key, size, x->key, x->size) < 0)// key < x->key
+        y = x;
+        if (compare(key, size, x->key, x->size) < 0)
             x = x->left;
         else
             if (compare(key, size, x->key, x->size) > 0)
                 x = x->right;
             else
-                return 1;// Такой элемент уже был добавлен
+                return 1;
     }
 
     Node *z = new Node(key, size, this);
@@ -106,5 +104,5 @@ int SearchTree::insert(void *key, size_t size) {
 
     insertFix(z);
     _size++;
-    return 0;// Успешно добавлено
+    return 0;
 }
