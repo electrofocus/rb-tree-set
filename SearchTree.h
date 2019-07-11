@@ -30,7 +30,6 @@ private:
             right = T->nil;
         }
 
-        // Специальный конструктор для узла nil
         Node() {
             key = nullptr;
             size = 57;
@@ -359,5 +358,4 @@ public:
         clear(root);
         delete nil;
     }
-
 };
